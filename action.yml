@@ -1,0 +1,41 @@
+name: Run Opensearch
+description: This action spins up an Opensearch instance that can be accessed and used in your subsequent steps.
+author: theablefew
+
+branding:
+  icon: database
+  color: green
+
+inputs:
+  version:
+    description: The version of the Opensearch you want to run
+    required: true
+  security-disabled:
+    description: Enable or disable HTTPS, enabled by default
+    default: 'false'
+    required: false
+  nodes:
+    description: Number of nodes in the cluster
+    required: false
+    default: '1'
+  port:
+    description: Port where you want to run Opensearch
+    required: false
+    default: '9200'
+  opensearch_password:
+    description: The password for the user elastic in your cluster
+    required: false
+    default: admin
+  plugins:
+    description: Plugins that you want to include
+    required: false
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    VERSION: ${{ inputs.version }}
+    NODES: ${{ inputs.nodes }}
+    PORT: ${{ inputs.port }}
+    PLUGINS: ${{ inputs.plugins }}
+    SECURITY_DISABLED: ${{ inputs.security-disabled }}
+    OPENSEARCH_INITIAL_ADMIN_PASSWORD: ${{ inputs.opensearch_password }}
