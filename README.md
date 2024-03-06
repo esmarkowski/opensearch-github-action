@@ -16,11 +16,8 @@ Github Actions for running OpenSearch
 
 ```yml
 - name: Runs OpenSearch
-  uses: theablefew/opensearch-github-actions/opensearch@main
+  uses: esmarkowski/opensearch-github-action@v1.0.0
   with:
     version: 2.12.0
     security-disabled: true
 ```
-
-
-Heavily borrowed from elastic/elasticsearch-github-actions. :)
